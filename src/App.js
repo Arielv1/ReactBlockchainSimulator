@@ -39,6 +39,7 @@ class App extends React.Component {
     }
     console.log(this.state.blockchain)
     this.state.blockchain.miningPendingTransaction()
+    alert('Block mined successfully')
   }
 
   printBlockchain = () => {
@@ -92,10 +93,6 @@ class App extends React.Component {
     return this.state.blockchain.getBalanceOfAddress(address)
   }
 
-  readMempoolTransactions = () => {
-
-  }
-
   render() {
     return (
       
@@ -103,8 +100,16 @@ class App extends React.Component {
         <br></br>
         <div style={{ marginLeft: '1rem', marginRight :'2rem'}}>
           Set number of leading zeroes for mining:
-          <input style={{ marginLeft: '1rem', marginRight :'2rem'}} type="text" name="difficulty" placeholder="1" value = {this.state.difficulty} onChange={this.setDifficulty}></input>
-          <Button onClick={() => this.initBlockchain()} >Create Blockchain</Button>
+          <input style={{ marginLeft: '1rem', marginRight :'2rem'}} 
+                  type="text"
+                  name="difficulty" 
+                  placeholder="1" 
+                  value = {this.state.difficulty} 
+                  onChange={this.setDifficulty}>
+                  </input>
+          <Button onClick={() => this.initBlockchain()}>Create Blockchain</Button>
+          <br></br>
+          Note: Changing difficulty resets the blockchain entity, all previous transactions will be discarded
         </div>
         <hr></hr>
         
