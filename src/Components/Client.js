@@ -6,7 +6,7 @@ const EC = require('elliptic').ec
 const ec = new EC('secp256k1')
 
 
-class CardGenerator extends React.Component {
+class Client extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -18,7 +18,7 @@ class CardGenerator extends React.Component {
       };
       
       this.setField = this.setField.bind(this)
-      //this.setHandleTransfer = this.setHandleTransfer.bind(this)
+    
     }
 
     transferTransaction = () => {
@@ -33,9 +33,6 @@ class CardGenerator extends React.Component {
       this.setState({[event.target.name] : event.target.value})
     }
 
-    /*setHandleTransfer = (event) => {
-      event.preventDefault()
-    }*/
 
     checkBalance = () => {
      
@@ -69,4 +66,4 @@ class CardGenerator extends React.Component {
     }
 }
 
-export default CardGenerator;
+export default Client;

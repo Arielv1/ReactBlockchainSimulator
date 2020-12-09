@@ -1,11 +1,11 @@
 import './App.css';
-import CardGenerator from './Components/CardGenerator'
+import Client from './Components/Client'
 import React, { Component, useState } from 'react';
 import {CardGroup } from 'react-bootstrap'
 import { Button, Card, Form, CardDeck } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 const { Blockchain, Transaction } = require("./BlockChain");
-
+const fs = require('fs')
 var text = ''
 class App extends React.Component {
  
@@ -92,6 +92,10 @@ class App extends React.Component {
     return this.state.blockchain.getBalanceOfAddress(address)
   }
 
+  readMempoolTransactions = () => {
+
+  }
+
   render() {
     return (
       
@@ -105,16 +109,16 @@ class App extends React.Component {
         <hr></hr>
         
         <CardGroup>
-          <CardGenerator me="Alice" transfer={this.addTransaction} balance={this.getBalance} private="be4fd198c8b81d22cd90eb06ca708527ea5e84f75ea852545f60467f128665ad"/>
-          <CardGenerator me="Bob" transfer={this.addTransaction} balance={this.getBalance} private="35d5d301c684e580dbe3a50a3cbf193580a5500ab679a854af58aad02d2108cf"/>
-          <CardGenerator me="Claire" transfer={this.addTransaction} balance={this.getBalance} private="c62ec918cd0c643eabcb127e20a31ad9b87a3b87fed444fdbf485a84a2886699"/>
+          <Client me="Alice" transfer={this.addTransaction} balance={this.getBalance} private="be4fd198c8b81d22cd90eb06ca708527ea5e84f75ea852545f60467f128665ad"/>
+          <Client me="Bob" transfer={this.addTransaction} balance={this.getBalance} private="35d5d301c684e580dbe3a50a3cbf193580a5500ab679a854af58aad02d2108cf"/>
+          <Client me="Claire" transfer={this.addTransaction} balance={this.getBalance} private="c62ec918cd0c643eabcb127e20a31ad9b87a3b87fed444fdbf485a84a2886699"/>
         </CardGroup>
         <div style={{ marginLeft: '1rem', marginRight :'2rem'}}>
            <hr></hr>
           <Button onClick={() => this.mine()}>Mine</Button>
           <hr></hr>
           <Button onClick={() => this.printBlockchain()}>View Blockchain</Button>
-          <br></br>
+          <hr></hr>
           <CardDeck >{this.state.blockchainView}</CardDeck>
         </div>
 
