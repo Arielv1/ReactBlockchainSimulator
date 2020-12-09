@@ -49,7 +49,7 @@ class Client extends React.Component {
             <Form>
               <Form.Group>
                 <Form.Label>Who To Transfer</Form.Label>
-                <Form.Control type="text" name="to" placeholder="3000" value = {this.state.to} onChange={this.setField}/>
+                <Form.Control type="text" name="to" placeholder="Target Public Key" value = {this.state.to} onChange={this.setField}/>
               </Form.Group>
 
               <Form.Group>

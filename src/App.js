@@ -61,7 +61,7 @@ class App extends React.Component {
         const merkleRoot = this.state.blockchain.chain[i].root
         allBlocks.push(<Card>
           <body>
-            Block #{i+1} Has {this.state.blockchain.chain[i].transactions.length}
+            Block #{i+1} Has {this.state.blockchain.chain[i].transactions.length} Transactions
             </body>
             Merkle Root {JSON.stringify(merkleRoot.toString())}
           </Card>)
