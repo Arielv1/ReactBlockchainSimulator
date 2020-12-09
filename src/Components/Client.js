@@ -39,6 +39,10 @@ class Client extends React.Component {
       const val = this.props.balance(this.state.wallet)
       this.setState({balance: val})
     }
+
+    performMining = () => {
+      this.props.mining(this.state.wallet)
+    }
     
     render () {    
       return (
@@ -60,6 +64,8 @@ class Client extends React.Component {
             <Button   onClick={this.transferTransaction}>Transfer</Button>
             <hr></hr>
             <Button   onClick={this.checkBalance}>Get Balance</Button>       {this.state.balance}
+            <hr></hr>
+            <Button   onClick={this.performMining}>Mine</Button>
             </Card.Body>
           </Card>
       );

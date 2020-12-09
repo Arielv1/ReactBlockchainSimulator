@@ -32,13 +32,13 @@ class App extends React.Component {
     console.log(this.state.blockchain)
   }
 
-  mine = () => {
+  mine = (minerAddress) => {
     if (!this.state.blockchain) {
       alert('Blockchain Full Node Not Yet Defined')
       return 
     }
     console.log(this.state.blockchain)
-    this.state.blockchain.miningPendingTransaction()
+    this.state.blockchain.miningPendingTransaction(minerAddress)
     alert('Block mined successfully')
   }
 
@@ -95,7 +95,6 @@ class App extends React.Component {
 
   render() {
     return (
-      
       <div>
         <br></br>
         <div style={{ marginLeft: '1rem', marginRight :'2rem'}}>
@@ -114,13 +113,11 @@ class App extends React.Component {
         <hr></hr>
         
         <CardGroup>
-          <Client me="Alice" transfer={this.addTransaction} balance={this.getBalance} private="be4fd198c8b81d22cd90eb06ca708527ea5e84f75ea852545f60467f128665ad"/>
-          <Client me="Bob" transfer={this.addTransaction} balance={this.getBalance} private="35d5d301c684e580dbe3a50a3cbf193580a5500ab679a854af58aad02d2108cf"/>
-          <Client me="Claire" transfer={this.addTransaction} balance={this.getBalance} private="c62ec918cd0c643eabcb127e20a31ad9b87a3b87fed444fdbf485a84a2886699"/>
+          <Client me="Alice" transfer={this.addTransaction} balance={this.getBalance} mining={this.mine} private="be4fd198c8b81d22cd90eb06ca708527ea5e84f75ea852545f60467f128665ad"/>
+          <Client me="Bob" transfer={this.addTransaction} balance={this.getBalance} mining={this.mine} private="35d5d301c684e580dbe3a50a3cbf193580a5500ab679a854af58aad02d2108cf"/>
+          <Client me="Claire" transfer={this.addTransaction} balance={this.getBalance} mining={this.mine} private="c62ec918cd0c643eabcb127e20a31ad9b87a3b87fed444fdbf485a84a2886699"/>
         </CardGroup>
         <div style={{ marginLeft: '1rem', marginRight :'2rem'}}>
-           <hr></hr>
-          <Button onClick={() => this.mine()}>Mine</Button>
           <hr></hr>
           <Button onClick={() => this.printBlockchain()}>View Blockchain</Button>
           <hr></hr>
