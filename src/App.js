@@ -14,21 +14,29 @@ class App extends React.Component {
     this.state = {
       blockchainView : '',
       difficulty: 1,
+      blockSize: 4,
       blockchain: null
     }
     this.setDifficulty = this.setDifficulty.bind(this)
     this.addTransaction = this.addTransaction.bind(this)
     this.initBlockchain = this.initBlockchain.bind(this)
     this.getBalance = this.getBalance.bind(this) 
+    this.setBlockSize = this.setBlockSize.bind(this)
   }
 
   setDifficulty = (event) => {
     this.setState({[event.target.name] : event.target.value})
   }
 
+
+  setBlockSize = (event) => {
+    this.setState({[event.target.name] : event.target.value})
+  }
+
   initBlockchain = () => {
     this.state.blockchain = new Blockchain()
     this.state.blockchain.difficulty = parseInt(this.state.difficulty, 10)
+    this.state.blockchain.blockSize = this.state.blockSize
     console.log(this.state.blockchain)
   }
 
@@ -40,6 +48,7 @@ class App extends React.Component {
     console.log(this.state.blockchain)
     this.state.blockchain.miningPendingTransaction(minerAddress)
     alert('Block mined successfully')
+    this.printBlockchain()
   }
 
   printBlockchain = () => {
@@ -83,6 +92,7 @@ class App extends React.Component {
     ctx.timestamp = jsonTx.timestamp
     console.log(ctx);
     this.state.blockchain.addTransaction(ctx)
+    this.printBlockchain()
   }
 
   getBalance(address) {
@@ -98,17 +108,25 @@ class App extends React.Component {
       <div>
         <br></br>
         <div style={{ marginLeft: '1rem', marginRight :'2rem'}}>
-          Set number of leading zeroes for mining:
+          <h6>Set number of leading zeroes for mining:
           <input style={{ marginLeft: '1rem', marginRight :'2rem'}} 
                   type="text"
                   name="difficulty" 
                   placeholder="1" 
                   value = {this.state.difficulty} 
                   onChange={this.setDifficulty}>
-                  </input>
+                  </input></h6>
+          <h6>Set number of transactions per block:
+          <input style={{ marginLeft: '1rem', marginRight :'2rem'}} 
+                  type="text"
+                  name="blockSize" 
+                  placeholder="4" 
+                  value = {this.state.blockSize} 
+                  onChange={this.setBlockSize}>
+                  </input></h6>
           <Button onClick={() => this.initBlockchain()}>Create Blockchain</Button>
           <br></br>
-          Note: Changing difficulty resets the blockchain entity, all previous transactions will be discarded
+          Note: Changing difficulty or block size resets the blockchain entity, all previous transactions will be discarded
         </div>
         <hr></hr>
         
